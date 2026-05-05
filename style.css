@@ -1,0 +1,3528 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #4b2e2a;
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(196,154,135,0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(139,94,75,0.14), transparent 28%),
+    linear-gradient(180deg, #fff4ef, #fffaf7);
+  overflow-x: hidden;
+}
+
+/* OPENING SCREEN */
+
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(255, 248, 244, 0.25), rgba(255, 248, 244, 0.9)),
+    url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition:
+    opacity 1.15s ease,
+    transform 1.15s ease,
+    filter 1.15s ease;
+}
+
+.opening-screen.hide-opening {
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.opening-card {
+  position: relative;
+  width: 84%;
+  max-width: 390px;
+  padding: 48px 28px;
+  border-radius: 40px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 250, 247, 0.86)),
+    rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 30px 80px rgba(68, 38, 31, 0.24),
+    inset 0 0 25px rgba(255, 255, 255, 0.65);
+  animation: softFloat 3.8s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* Border luar gold */
+.opening-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 32px;
+  border: 2px solid rgba(180, 130, 82, 0.45);
+  pointer-events: none;
+}
+
+/* Border dalam halus */
+.opening-card::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 94, 75, 0.25);
+  pointer-events: none;
+}
+
+.opening-card::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(139, 94, 75, 0.22);
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.mini-title {
+  margin: 0 0 16px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #8b5e4b;
+}
+
+.opening-card h1 {
+  margin: 7px 0;
+  font-size: 47px;
+  font-weight: normal;
+  line-height: 1;
+  color: #4b2e2a;
+}
+
+.ampersand {
+  display: block;
+  margin: 4px 0;
+  font-size: 26px;
+  color: #a46f5d;
+}
+
+.opening-date {
+  margin: 24px 0;
+  font-size: 15px;
+  color: #6f4a40;
+}
+
+.open-button {
+  position: relative;
+  z-index: 2;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8b5e4b, #c49a87);
+  color: white;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  box-shadow: 0 12px 30px rgba(139, 94, 75, 0.35);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.open-button:active {
+  transform: scale(0.96);
+}
+
+.small-note {
+  margin: 20px 0 0;
+  font-size: 12px;
+  color: #8b5e4b;
+  opacity: 0.8;
+}
+
+.ornament {
+  position: absolute;
+  color: rgba(139, 94, 75, 0.22);
+  font-size: 130px;
+  animation: ornamentMove 7s ease-in-out infinite;
+}
+
+.ornament-top {
+  top: 5%;
+  left: 3%;
+}
+
+.ornament-bottom {
+  bottom: 5%;
+  right: 3%;
+  animation-delay: 1.4s;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(35px);
+  transition: opacity 1s ease, transform 1s ease;
+  padding: 28px 18px 115px;
+}
+
+.main-content.show-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.hero-section {
+  min-height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 35px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wedding-cover-card {
+  position: relative;
+  width: min(92vw, 430px);
+  min-height: 620px;
+  padding: 32px 24px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 210, 210, 0.35), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 220, 220, 0.35), transparent 30%),
+    #fffdfb;
+  box-shadow: 0 16px 35px rgba(60, 40, 35, 0.16);
+  overflow: hidden;
+}
+
+/* Garisan daun/bunga halus tepi */
+.wedding-cover-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.28);
+  pointer-events: none;
+}
+
+/* Arch macam gambar kedua */
+.arch-frame {
+  position: relative;
+  z-index: 3;
+  min-height: 535px;
+  margin: 24px auto 0;
+  padding: 80px 24px 35px;
+  border: 2px solid rgba(185, 110, 70, 0.78);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 180px;
+  border-top-right-radius: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.cover-title {
+  margin: 0 0 30px;
+  font-size: 18px;
+  color: #2d1f1c;
+}
+
+.cover-name {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 1.1;
+  color: #1f1715;
+}
+
+.cover-name span {
+  display: block;
+  margin: 12px 0;
+  font-size: 27px;
+  color: #2d1f1c;
+}
+
+.cover-date {
+  margin: 35px 0 3px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #2d1f1c;
+}
+
+.cover-place {
+  margin: 0 0 28px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #2d1f1c;
+}
+
+.cover-quote {
+  margin: 0 auto;
+  max-width: 260px;
+  font-size: 12px;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: #2d1f1c;
+}
+
+/* Bunga hiasan */
+.flower {
+  position: absolute;
+  z-index: 4;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e9c7c0 0%, #d8aaa0 45%, #f8eeee 70%);
+  color: #9b6a5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  opacity: 0.95;
+  box-shadow: 0 8px 18px rgba(80, 50, 45, 0.14);
+}
+
+.flower-top-left {
+  top: 12px;
+  left: 34px;
+}
+
+.flower-top-right {
+  top: 70px;
+  right: 38px;
+}
+
+.flower-bottom-left {
+  bottom: 56px;
+  left: 32px;
+}
+
+.flower-bottom-right {
+  bottom: 24px;
+  right: 30px;
+}
+
+/* Garisan ranting halus */
+.wedding-cover-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, transparent 0 18%, rgba(120, 150, 160, 0.25) 18.2%, transparent 18.6%),
+    linear-gradient(40deg, transparent 0 76%, rgba(120, 150, 160, 0.25) 76.2%, transparent 76.7%);
+  pointer-events: none;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+/* PREMIUM CARD */
+
+.premium-card {
+  position: relative;
+  padding: 36px 24px;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 50px rgba(72, 42, 35, 0.11);
+  overflow: hidden;
+}
+
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 26px;
+  border: 1px solid rgba(139, 94, 75, 0.16);
+  pointer-events: none;
+}
+
+.section-number {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 40px;
+  color: rgba(139, 94, 75, 0.12);
+}
+
+.section-kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #9b6a5c;
+}
+
+.premium-card h2 {
+  margin: 8px 0 20px;
+  font-size: 31px;
+  font-weight: normal;
+  color: #4b2e2a;
+}
+
+.premium-card p {
+  line-height: 1.75;
+  color: #60423a;
+}
+
+/* COUNTDOWN */
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.countdown div {
+  padding: 14px 6px;
+  border-radius: 18px;
+  background: rgba(255, 248, 244, 0.9);
+}
+
+.countdown strong {
+  display: block;
+  font-size: 23px;
+  color: #8b5e4b;
+}
+
+.countdown span {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #7b5a51;
+}
+
+/* COUPLE */
+
+.couple-box h3 {
+  margin: 10px 0 4px;
+  font-size: 28px;
+  font-weight: normal;
+  color: #8b5e4b;
+}
+
+.couple-box span {
+  display: block;
+  margin: 16px 0;
+  font-size: 26px;
+  color: #a46f5d;
+}
+
+/* DETAILS */
+
+.info-list {
+  display: grid;
+  gap: 13px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(255, 248, 244, 0.9);
+  text-align: left;
+}
+
+.info-item span {
+  font-size: 24px;
+}
+
+.info-item p {
+  margin: 0;
+}
+
+/* TIMELINE */
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.timeline-item {
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(255, 248, 244, 0.9);
+}
+
+.timeline-item strong {
+  color: #8b5e4b;
+  font-size: 15px;
+}
+
+.timeline-item p {
+  margin: 5px 0 0;
+}
+
+/* DOA */
+
+.doa-text {
+  font-style: italic;
+}
+
+/* ACTION BUTTONS */
+
+.action-section {
+  display: grid;
+  gap: 13px;
+}
+
+.action-section a,
+.gift-button,
+.footer-brand a {
+  display: block;
+  padding: 15px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8b5e4b, #c49a87);
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(139, 94, 75, 0.25);
+}
+
+/* FOOTER */
+
+.footer-brand {
+  padding: 34px 20px;
+  color: #8b5e4b;
+}
+
+.footer-brand p {
+  margin: 6px 0;
+  font-size: 13px;
+}
+
+.footer-brand h3 {
+  margin: 4px 0;
+  font-size: 28px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.footer-brand .tagline {
+  margin-bottom: 16px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* BOTTOM MENU */
+
+.bottom-menu {
+  position: fixed;
+  left: 50%;
+  bottom: 15px;
+  z-index: 999;
+  width: 92%;
+  max-width: 430px;
+  padding: 10px 8px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 35px rgba(65, 38, 31, 0.16);
+  display: flex;
+  justify-content: space-around;
+
+  opacity: 0;
+  transform: translateX(-50%) translateY(35px);
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.invitation-opened .bottom-menu {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.bottom-menu a {
+  color: #8b5e4b;
+  text-decoration: none;
+  font-size: 11.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.bottom-menu span {
+  font-size: 18px;
+}
+
+/* SCROLL REVEAL PREMIUM */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(80px) scale(0.96);
+  filter: blur(10px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease,
+    filter 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* ANIMATION */
+
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes ornamentMove {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(8deg) translateY(-18px);
+  }
+}
+
+/* MOBILE SMALL SCREEN */
+
+@media (max-width: 380px) {
+  .opening-card h1 {
+    font-size: 40px;
+  }
+
+  .hero-section h2 {
+    font-size: 38px;
+  }
+
+  .premium-card h2 {
+    font-size: 27px;
+  }
+
+  .countdown strong {
+    font-size: 19px;
+  }
+}
+.corner {
+  position: absolute;
+  z-index: 1;
+  font-size: 34px;
+  color: rgba(151, 101, 73, 0.5);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.corner-tl {
+  top: 19px;
+  left: 20px;
+}
+
+.corner-tr {
+  top: 19px;
+  right: 20px;
+  transform: rotate(90deg);
+}
+
+.corner-bl {
+  bottom: 19px;
+  left: 20px;
+  transform: rotate(-90deg);
+}
+
+.corner-br {
+  bottom: 19px;
+  right: 20px;
+  transform: rotate(180deg);
+}
+.opening-card > p,
+.opening-card > h1,
+.opening-card > span,
+.opening-card > button {
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 430px) {
+  .hero-section {
+    padding: 24px 12px;
+  }
+
+  .wedding-cover-card {
+    width: 94vw;
+    min-height: 570px;
+    padding: 24px 18px;
+  }
+
+  .arch-frame {
+    min-height: 500px;
+    padding: 70px 18px 30px;
+  }
+
+  .cover-name {
+    font-size: 42px;
+  }
+
+  .cover-title {
+    font-size: 16px;
+  }
+
+  .flower {
+    width: 52px;
+    height: 52px;
+    font-size: 28px;
+  }
+}
+/* NAMA PENGANTIN - STYLE CANTIK */
+.opening-card h1 {
+  font-family: "Great Vibes", cursive !important;
+  font-size: 66px !important;
+  font-weight: 400 !important;
+  line-height: 0.95 !important;
+  letter-spacing: 0 !important;
+  color: #4b2e2a !important;
+}
+
+.ampersand {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 30px !important;
+  color: #a46f5d !important;
+  margin: 10px 0 !important;
+}
+
+@media (max-width: 430px) {
+  .opening-card h1 {
+    font-size: 58px !important;
+  }
+}
+/* TULISAN PREMIUM UNTUK KAD COVER KEDUA */
+.cover-title {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.5px !important;
+  color: #3d2a26 !important;
+}
+
+.cover-name {
+  font-family: "Great Vibes", cursive !important;
+  font-size: 66px !important;
+  font-weight: 400 !important;
+  line-height: 0.95 !important;
+  color: #2f201d !important;
+}
+
+.cover-name span {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 32px !important;
+  font-weight: 500 !important;
+  margin: 16px 0 !important;
+  color: #9b6a5c !important;
+}
+
+.cover-date,
+.cover-place {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #2f201d !important;
+}
+
+.cover-quote {
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  line-height: 1.5 !important;
+  color: #2f201d !important;
+}
+@media (max-width: 430px) {
+  .cover-name {
+    font-size: 58px !important;
+  }
+
+  .cover-title {
+    font-size: 16px !important;
+  }
+
+  .cover-date,
+  .cover-place {
+    font-size: 14px !important;
+  }
+}
+/* MUSIC BUTTON */
+.music-button {
+  position: fixed;
+  right: 18px;
+  bottom: 88px;
+  z-index: 1000;
+
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+  color: #8b5e4b;
+  font-size: 22px;
+
+  box-shadow: 0 10px 28px rgba(65, 38, 31, 0.18);
+  backdrop-filter: blur(12px);
+
+  opacity: 0;
+  transform: translateY(25px);
+  pointer-events: none;
+
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.invitation-opened .music-button {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.music-button.playing {
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 28px rgba(65, 38, 31, 0.18);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 12px 34px rgba(139, 94, 75, 0.32);
+  }
+}
+.music-button {
+  pointer-events: none;
+}
+
+body.invitation-opened .music-button {
+  pointer-events: auto;
+}
+.menu-calendar-btn {
+  border: none;
+  background: transparent;
+  color: #8b5e4b;
+  text-decoration: none;
+  font-size: 11.5px;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-calendar-btn span {
+  font-size: 18px;
+}
+/* STYLE KAD PORTRAIT MACAM INVITATION */
+.invitation-card {
+  position: relative;
+  width: min(92vw, 430px);
+  min-height: 620px;
+  margin: 16px auto;
+  padding: 32px 24px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 210, 210, 0.35), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 220, 220, 0.35), transparent 30%),
+    #fffdfb;
+  box-shadow: 0 12px 28px rgba(60, 40, 35, 0.18);
+  overflow: hidden;
+}
+
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.28);
+  pointer-events: none;
+}
+
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, transparent 0 18%, rgba(120, 150, 160, 0.20) 18.2%, transparent 18.6%),
+    linear-gradient(40deg, transparent 0 76%, rgba(120, 150, 160, 0.20) 76.2%, transparent 76.7%);
+  pointer-events: none;
+}
+
+.invitation-card .arch-frame {
+  position: relative;
+  z-index: 3;
+  min-height: 535px;
+  margin: 20px auto 0;
+  padding: 70px 24px 32px;
+  border: 2px solid rgba(185, 110, 70, 0.78);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 180px;
+  border-top-right-radius: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.invitation-card p {
+  margin: 7px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  line-height: 1.35;
+  color: #2d1f1c;
+}
+
+.invitation-card h3 {
+  margin: 6px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #2d1f1c;
+}
+
+.invitation-card .bismillah {
+  font-size: 26px;
+  color: #17814f;
+  margin-bottom: 18px;
+}
+
+.invitation-card .script-name {
+  margin: 6px 0;
+  font-family: "Great Vibes", cursive;
+  font-size: 34px;
+  font-weight: 400;
+  color: #1f1715;
+}
+
+/* Kalau guna premium-card lama, paksa jadi style kad juga */
+.premium-card {
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 16px auto !important;
+  padding: 32px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(255, 210, 210, 0.35), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 220, 220, 0.35), transparent 30%),
+    #fffdfb !important;
+  box-shadow: 0 12px 28px rgba(60, 40, 35, 0.18) !important;
+}
+
+/* Mobile */
+@media (max-width: 430px) {
+  .invitation-card {
+    width: 94vw;
+    min-height: 570px;
+    padding: 24px 18px;
+  }
+
+  .invitation-card .arch-frame {
+    min-height: 500px;
+    padding: 62px 18px 28px;
+  }
+
+  .invitation-card .script-name {
+    font-size: 31px;
+  }
+
+  .invitation-card p {
+    font-size: 14px;
+  }
+}
+/* KAD PERTAMA - COVER STYLE */
+.hero-section {
+  min-height: auto !important;
+  margin: 0 auto !important;
+  padding: 18px 12px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.wedding-cover-card {
+  position: relative;
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 0 auto !important;
+  padding: 30px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    #fffdfb !important;
+  box-shadow: 0 14px 32px rgba(40, 35, 35, 0.24) !important;
+  overflow: hidden !important;
+}
+
+/* border luar halus */
+.wedding-cover-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ranting background */
+.wedding-cover-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, transparent 0 17%, rgba(90, 130, 145, 0.26) 17.2%, transparent 17.8%),
+    linear-gradient(45deg, transparent 0 74%, rgba(90, 130, 145, 0.26) 74.2%, transparent 74.8%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.arch-frame {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 535px !important;
+  margin: 20px auto 0 !important;
+  padding: 78px 24px 35px !important;
+  border: 2px solid rgba(185, 110, 70, 0.78) !important;
+  border-top-left-radius: 190px !important;
+  border-top-right-radius: 190px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.cover-title {
+  margin: 0 0 34px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: #1f1715 !important;
+}
+
+.cover-name {
+  margin: 0 !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 62px !important;
+  font-weight: 400 !important;
+  line-height: 0.95 !important;
+  color: #050505 !important;
+}
+
+.cover-name span {
+  display: block !important;
+  margin: 17px 0 !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  color: #050505 !important;
+}
+
+.cover-date {
+  margin: 38px 0 2px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #1f1715 !important;
+}
+
+.cover-place {
+  margin: 0 0 26px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #1f1715 !important;
+}
+
+.cover-quote {
+  max-width: 260px !important;
+  margin: 0 auto !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  text-transform: uppercase !important;
+  color: #1f1715 !important;
+}
+
+/* bunga */
+.flower {
+  position: absolute !important;
+  z-index: 5 !important;
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, #f5e8e5 10%, #d8aaa0 48%, #fff6f3 72%) !important;
+  color: #9b6a5c !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 34px !important;
+  box-shadow: 0 8px 20px rgba(80, 50, 45, 0.22) !important;
+}
+
+.flower-top-left {
+  top: -8px !important;
+  left: 72px !important;
+}
+
+.flower-top-right {
+  top: 112px !important;
+  right: 38px !important;
+}
+
+.flower-bottom-left {
+  bottom: 80px !important;
+  left: 24px !important;
+}
+
+.flower-bottom-right {
+  bottom: 28px !important;
+  right: 25px !important;
+}
+
+@media (max-width: 430px) {
+  .wedding-cover-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+    padding: 24px 18px !important;
+  }
+
+  .arch-frame {
+    min-height: 500px !important;
+    padding: 68px 18px 30px !important;
+  }
+
+  .cover-name {
+    font-size: 56px !important;
+  }
+
+  .cover-title {
+    font-size: 18px !important;
+  }
+
+  .flower {
+    width: 54px !important;
+    height: 54px !important;
+    font-size: 29px !important;
+  }
+}
+/* BUNGA EXTRA - LEBIH LEBAT */
+.flower-top-center {
+  top: -22px !important;
+  left: 45% !important;
+  width: 58px !important;
+  height: 58px !important;
+  opacity: 0.75 !important;
+}
+
+.flower-right-middle {
+  top: 275px !important;
+  right: -12px !important;
+  width: 55px !important;
+  height: 55px !important;
+  opacity: 0.85 !important;
+}
+
+.flower-left-small {
+  top: 210px !important;
+  left: -10px !important;
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 24px !important;
+  opacity: 0.65 !important;
+}
+
+.flower-bottom-center {
+  bottom: -18px !important;
+  left: 47% !important;
+  width: 52px !important;
+  height: 52px !important;
+  opacity: 0.75 !important;
+}
+
+/* Petal kecil-kecil macam jatuh */
+.petal {
+  position: absolute;
+  z-index: 4;
+  width: 13px;
+  height: 18px;
+  background: rgba(238, 170, 166, 0.45);
+  border-radius: 70% 30% 70% 30%;
+  transform: rotate(35deg);
+  pointer-events: none;
+}
+
+.petal-1 {
+  top: 65px;
+  left: 70px;
+}
+
+.petal-2 {
+  top: 115px;
+  right: 95px;
+  transform: rotate(-25deg);
+}
+
+.petal-3 {
+  top: 260px;
+  left: 55px;
+  transform: rotate(18deg);
+}
+
+.petal-4 {
+  bottom: 150px;
+  right: 72px;
+  transform: rotate(-45deg);
+}
+
+.petal-5 {
+  bottom: 80px;
+  left: 105px;
+  transform: rotate(55deg);
+}
+
+.petal-6 {
+  top: 390px;
+  right: 35px;
+  transform: rotate(20deg);
+}
+/* RANTING HALUS EXTRA */
+.wedding-cover-card {
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    linear-gradient(115deg, transparent 0 12%, rgba(110, 140, 155, 0.20) 12.2%, transparent 12.8%),
+    linear-gradient(65deg, transparent 0 82%, rgba(110, 140, 155, 0.20) 82.2%, transparent 82.8%),
+    linear-gradient(150deg, transparent 0 28%, rgba(110, 140, 155, 0.14) 28.2%, transparent 28.7%),
+    linear-gradient(35deg, transparent 0 68%, rgba(110, 140, 155, 0.14) 68.2%, transparent 68.7%),
+    #fffdfb !important;
+}
+/* FLORAL BRANCH STYLE - MACAM KAD PREMIUM */
+.floral-branch {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.branch-left {
+  top: 0;
+  left: -8px;
+  width: 170px;
+  height: 360px;
+}
+
+.branch-right {
+  top: 10px;
+  right: -12px;
+  width: 180px;
+  height: 390px;
+  transform: scaleX(-1);
+}
+
+.branch-bottom {
+  bottom: -8px;
+  right: 10px;
+  width: 180px;
+  height: 230px;
+  transform: rotate(8deg);
+}
+
+/* batang halus */
+.stem {
+  position: absolute;
+  width: 1.5px;
+  height: 230px;
+  background: rgba(115, 145, 155, 0.45);
+  border-radius: 999px;
+  transform-origin: bottom;
+}
+
+.stem-1 {
+  left: 58px;
+  top: -20px;
+  transform: rotate(34deg);
+}
+
+.stem-2 {
+  left: 88px;
+  top: 10px;
+  height: 190px;
+  transform: rotate(48deg);
+  opacity: 0.8;
+}
+
+/* daun kecil */
+.leaf {
+  position: absolute;
+  width: 18px;
+  height: 9px;
+  background: rgba(125, 150, 155, 0.35);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(35deg);
+}
+
+.leaf-1 {
+  top: 72px;
+  left: 72px;
+}
+
+.leaf-2 {
+  top: 135px;
+  left: 110px;
+  transform: rotate(-28deg);
+}
+
+.leaf-3 {
+  top: 205px;
+  left: 132px;
+  transform: rotate(25deg);
+}
+
+/* bunga kecil / bud */
+.bud {
+  position: absolute;
+  width: 15px;
+  height: 18px;
+  background: rgba(239, 176, 169, 0.6);
+  border-radius: 70% 30% 70% 30%;
+  transform: rotate(28deg);
+  box-shadow: 0 0 10px rgba(239, 176, 169, 0.35);
+}
+
+.bud-1 {
+  top: 95px;
+  left: 100px;
+}
+
+.bud-2 {
+  top: 245px;
+  left: 140px;
+  transform: rotate(-18deg);
+}
+
+/* bunga besar */
+.big-flower {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #8f6056 0 8%, transparent 9%),
+    radial-gradient(circle at 50% 18%, #f6e8e5 0 20%, transparent 21%),
+    radial-gradient(circle at 78% 43%, #dfb5ad 0 22%, transparent 23%),
+    radial-gradient(circle at 65% 77%, #f2d6d1 0 21%, transparent 22%),
+    radial-gradient(circle at 28% 72%, #d9aaa1 0 22%, transparent 23%),
+    radial-gradient(circle at 20% 38%, #f4dfdb 0 21%, transparent 22%),
+    #fff5f2;
+  box-shadow:
+    0 8px 24px rgba(70, 45, 40, 0.20),
+    0 0 22px rgba(222, 180, 172, 0.55);
+}
+
+.flower-a {
+  top: -22px;
+  left: 65px;
+}
+
+.flower-b {
+  top: 95px;
+  left: 45px;
+}
+
+.flower-c {
+  bottom: 28px;
+  right: 18px;
+}
+
+/* petal kecil bertabur */
+.wedding-cover-card .petal {
+  position: absolute;
+  z-index: 4;
+  width: 12px;
+  height: 17px;
+  background: rgba(238, 170, 166, 0.42);
+  border-radius: 70% 30% 70% 30%;
+  pointer-events: none;
+}
+
+.petal-1 { top: 65px; left: 75px; transform: rotate(35deg); }
+.petal-2 { top: 110px; right: 92px; transform: rotate(-25deg); }
+.petal-3 { top: 265px; left: 55px; transform: rotate(18deg); }
+.petal-4 { bottom: 155px; right: 72px; transform: rotate(-45deg); }
+.petal-5 { bottom: 82px; left: 105px; transform: rotate(55deg); }
+.petal-6 { top: 390px; right: 35px; transform: rotate(20deg); }
+/* KECILKAN SEMUA BUNGA */
+.flower {
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 22px !important;
+}
+
+/* Susun semula bunga supaya tak kacau tulisan */
+.flower-top-left {
+  top: -4px !important;
+  left: 70px !important;
+}
+
+.flower-top-right {
+  top: 105px !important;
+  right: 28px !important;
+}
+
+.flower-bottom-left {
+  bottom: 88px !important;
+  left: 22px !important;
+}
+
+.flower-bottom-right {
+  bottom: 35px !important;
+  right: 24px !important;
+}
+
+/* Kalau ada bunga extra, kecilkan juga */
+.flower-top-center,
+.flower-right-middle,
+.flower-left-small,
+.flower-bottom-center {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 18px !important;
+  opacity: 0.65 !important;
+}
+.flower {
+  opacity: 0.75 !important;
+}
+/* KECILKAN BUNGA KAD PERTAMA */
+.flower,
+.big-flower {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 18px !important;
+  opacity: 0.78 !important;
+}
+
+/* Susun semula bunga utama */
+.flower-a,
+.flower-top-left {
+  top: 8px !important;
+  left: 92px !important;
+}
+
+.flower-b,
+.flower-top-right {
+  top: 125px !important;
+  right: 45px !important;
+  left: auto !important;
+}
+
+.flower-c,
+.flower-bottom-right {
+  bottom: 55px !important;
+  right: 42px !important;
+  left: auto !important;
+}
+
+/* Kalau ada bunga bawah kiri */
+.flower-bottom-left {
+  bottom: 95px !important;
+  left: 35px !important;
+}
+
+/* Untuk phone */
+@media (max-width: 430px) {
+  .flower,
+  .big-flower {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 16px !important;
+  }
+}
+/* KAD 2 - JEMPUTAN RASMI */
+.invitation-card {
+  position: relative;
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 16px auto !important;
+  padding: 30px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    linear-gradient(115deg, transparent 0 12%, rgba(110, 140, 155, 0.18) 12.2%, transparent 12.8%),
+    linear-gradient(65deg, transparent 0 82%, rgba(110, 140, 155, 0.18) 82.2%, transparent 82.8%),
+    #fffdfb !important;
+  box-shadow: 0 14px 32px rgba(40, 35, 35, 0.24) !important;
+  overflow: hidden !important;
+}
+
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.invitation-card .arch-frame {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 535px !important;
+  margin: 20px auto 0 !important;
+  padding: 62px 24px 32px !important;
+  border: 2px solid rgba(185, 110, 70, 0.78) !important;
+  border-top-left-radius: 190px !important;
+  border-top-right-radius: 190px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.bismillah {
+  margin: 0 0 24px !important;
+  font-size: 31px !important;
+  color: #10804c !important;
+  line-height: 1.1 !important;
+  font-family: "Cormorant Garamond", serif !important;
+}
+
+.invite-small {
+  margin: 0 0 20px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #1f1715 !important;
+}
+
+.parent-name {
+  margin: 4px 0 !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.7px !important;
+  color: #1f1715 !important;
+  text-transform: uppercase !important;
+}
+
+.and-text {
+  margin: 2px 0 !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  color: #1f1715 !important;
+}
+
+.invite-text {
+  margin: 26px auto 18px !important;
+  max-width: 300px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+  color: #1f1715 !important;
+}
+
+.script-name {
+  margin: 4px 0 !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 31px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  color: #1f1715 !important;
+}
+
+/* bunga kecil untuk kad 2 */
+.invitation-card .flower {
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 22px !important;
+  opacity: 0.78 !important;
+}
+
+.invitation-card .flower-top-left {
+  top: -2px !important;
+  left: 78px !important;
+}
+
+.invitation-card .flower-top-right {
+  top: 105px !important;
+  right: 36px !important;
+}
+
+.invitation-card .flower-bottom-left {
+  bottom: 88px !important;
+  left: 28px !important;
+}
+
+.invitation-card .flower-bottom-right {
+  bottom: 36px !important;
+  right: 32px !important;
+}
+
+@media (max-width: 430px) {
+  .invitation-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+    padding: 24px 18px !important;
+  }
+
+  .invitation-card .arch-frame {
+    min-height: 500px !important;
+    padding: 54px 18px 28px !important;
+  }
+
+  .bismillah {
+    font-size: 27px !important;
+  }
+
+  .parent-name {
+    font-size: 16px !important;
+  }
+
+  .invite-text {
+    font-size: 15px !important;
+  }
+
+  .script-name {
+    font-size: 28px !important;
+  }
+
+  .invitation-card .flower {
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
+/* KAD 3 - EVENT DETAILS STYLE */
+.event-card {
+  position: relative;
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 16px auto !important;
+  padding: 30px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    linear-gradient(115deg, transparent 0 12%, rgba(110, 140, 155, 0.18) 12.2%, transparent 12.8%),
+    linear-gradient(65deg, transparent 0 82%, rgba(110, 140, 155, 0.18) 82.2%, transparent 82.8%),
+    #fffdfb !important;
+  box-shadow: 0 14px 32px rgba(40, 35, 35, 0.24) !important;
+  overflow: hidden !important;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.event-arch {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 535px !important;
+  margin: 20px auto 0 !important;
+  padding: 52px 22px 34px !important;
+  border: 2px solid rgba(185, 110, 70, 0.78) !important;
+  border-top-left-radius: 190px !important;
+  border-top-right-radius: 190px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.event-icon {
+  font-size: 30px;
+  margin-bottom: 22px;
+}
+
+.event-day {
+  margin: 0 0 6px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  color: #1f1715 !important;
+}
+
+.event-date-text {
+  margin: 0 0 26px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 23px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.2px !important;
+  color: #1f1715 !important;
+}
+
+.event-countdown {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px !important;
+  margin: 0 auto 38px !important;
+}
+
+.event-countdown div {
+  padding: 8px 4px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.event-countdown strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 23px !important;
+  font-weight: 600 !important;
+  color: #153461 !important;
+  letter-spacing: 3px !important;
+}
+
+.event-countdown span {
+  display: block;
+  margin-top: 6px;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 12px !important;
+  color: #153461 !important;
+  text-transform: uppercase;
+  letter-spacing: 4px !important;
+}
+
+.event-divider-icon {
+  margin: 4px 0 26px;
+  font-size: 26px;
+  color: #e49b18;
+  transform: rotate(12deg);
+}
+
+.event-time {
+  margin: 0 0 34px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 20px !important;
+  color: #1f1715 !important;
+}
+
+.location-icon {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+.event-location {
+  margin: 0 !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 19px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: #1f1715 !important;
+}
+
+/* bunga kecil untuk event card */
+.event-card .flower {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 18px !important;
+  opacity: 0.78 !important;
+}
+
+.event-card .flower-top-left {
+  top: -2px !important;
+  left: 78px !important;
+}
+
+.event-card .flower-top-right {
+  top: 105px !important;
+  right: 36px !important;
+}
+
+.event-card .flower-bottom-left {
+  bottom: 88px !important;
+  left: 28px !important;
+}
+
+.event-card .flower-bottom-right {
+  bottom: 36px !important;
+  right: 32px !important;
+}
+
+@media (max-width: 430px) {
+  .event-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+    padding: 24px 18px !important;
+  }
+
+  .event-arch {
+    min-height: 500px !important;
+    padding: 46px 16px 30px !important;
+  }
+
+  .event-icon {
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .event-date-text {
+    font-size: 21px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .event-countdown {
+    gap: 5px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .event-countdown strong {
+    font-size: 20px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .event-countdown span {
+    font-size: 10px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .event-time {
+    font-size: 18px !important;
+  }
+
+  .event-location {
+    font-size: 17px !important;
+  }
+}
+/* KAD 3 - VERSION NIKAHLINK ORIGINAL */
+.event-arch {
+  padding: 46px 22px 34px !important;
+  justify-content: flex-start !important;
+}
+
+/* Icon calendar jadi badge bulat */
+.event-icon {
+  width: 54px !important;
+  height: 54px !important;
+  margin: 0 auto 18px !important;
+  border-radius: 50% !important;
+  background: rgba(139, 94, 75, 0.10) !important;
+  border: 1px solid rgba(139, 94, 75, 0.18) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 25px !important;
+}
+
+/* Hari kecil atas */
+.event-day {
+  margin: 0 !important;
+  font-size: 16px !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  color: #9b6a5c !important;
+}
+
+/* Tarikh lebih luxury */
+.event-date-text {
+  margin: 8px 0 24px !important;
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  color: #3f2a25 !important;
+}
+
+/* Countdown dalam kotak rounded, bukan flat */
+.event-countdown {
+  width: 100% !important;
+  margin: 0 auto 34px !important;
+  padding: 12px 10px !important;
+  border-radius: 24px !important;
+  background: rgba(255, 248, 244, 0.75) !important;
+  border: 1px solid rgba(139, 94, 75, 0.10) !important;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.7) !important;
+}
+
+.event-countdown div {
+  padding: 8px 2px !important;
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+}
+
+.event-countdown strong {
+  font-size: 22px !important;
+  letter-spacing: 1px !important;
+  color: #8b5e4b !important;
+}
+
+.event-countdown span {
+  font-size: 10px !important;
+  letter-spacing: 2px !important;
+  color: #6f4a40 !important;
+}
+
+/* Buang simbol tengah yang pelik */
+.event-divider-icon {
+  display: none !important;
+}
+
+/* Masa dalam mini card */
+.event-time {
+  margin: 0 auto 22px !important;
+  padding: 12px 20px !important;
+  width: fit-content !important;
+  border-radius: 999px !important;
+  background: rgba(139, 94, 75, 0.08) !important;
+  border: 1px solid rgba(139, 94, 75, 0.14) !important;
+  font-size: 18px !important;
+  color: #3f2a25 !important;
+}
+
+/* Lokasi jadi block sendiri */
+.location-icon {
+  width: 48px !important;
+  height: 48px !important;
+  margin: 0 auto 12px !important;
+  border-radius: 50% !important;
+  background: rgba(196, 154, 135, 0.16) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 25px !important;
+}
+
+.event-location {
+  margin: 0 auto !important;
+  padding: 14px 18px !important;
+  max-width: 270px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  border: 1px solid rgba(139, 94, 75, 0.10) !important;
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+}
+
+/* Bunga lebih kecil supaya tak nampak sama */
+.event-card .flower {
+  width: 24px !important;
+  height: 24px !important;
+  opacity: 0.55 !important;
+}
+
+.event-card .flower-top-left {
+  top: 10px !important;
+  left: 86px !important;
+}
+
+.event-card .flower-top-right {
+  top: 118px !important;
+  right: 42px !important;
+}
+
+.event-card .flower-bottom-left {
+  bottom: 100px !important;
+  left: 36px !important;
+}
+
+.event-card .flower-bottom-right {
+  bottom: 44px !important;
+  right: 40px !important;
+}
+/* KAD 4 - ATURCARA MAJLIS */
+.program-card {
+  position: relative;
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 16px auto !important;
+  padding: 30px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    linear-gradient(115deg, transparent 0 12%, rgba(110, 140, 155, 0.18) 12.2%, transparent 12.8%),
+    linear-gradient(65deg, transparent 0 82%, rgba(110, 140, 155, 0.18) 82.2%, transparent 82.8%),
+    #fffdfb !important;
+  box-shadow: 0 14px 32px rgba(40, 35, 35, 0.24) !important;
+  overflow: hidden !important;
+}
+
+.program-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.program-arch {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 535px !important;
+  margin: 20px auto 0 !important;
+  padding: 74px 20px 34px !important;
+  border: 2px solid rgba(185, 110, 70, 0.78) !important;
+  border-top-left-radius: 190px !important;
+  border-top-right-radius: 190px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.program-title {
+  margin: 0 0 32px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+  color: #1f1715 !important;
+}
+
+.program-timeline {
+  position: relative;
+  width: 100%;
+  max-width: 310px;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.program-timeline::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 24px;
+  bottom: 24px;
+  width: 1px;
+  background: rgba(185, 110, 70, 0.35);
+}
+
+.program-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.program-dot {
+  position: relative;
+  z-index: 2;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #a68a80;
+  flex: 0 0 11px;
+}
+
+.program-box {
+  flex: 1;
+  padding: 20px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 18px rgba(60, 45, 40, 0.12);
+  border: 1px solid rgba(139, 94, 75, 0.07);
+}
+
+.program-box h3 {
+  margin: 0 0 10px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 4px !important;
+  color: #1f1715 !important;
+}
+
+.program-box p {
+  margin: 0 !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 17px !important;
+  letter-spacing: 4px !important;
+  color: #7b625d !important;
+}
+
+/* bunga kecil untuk kad 4 */
+.program-card .flower {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 18px !important;
+  opacity: 0.78 !important;
+}
+
+.program-card .flower-top-left {
+  top: -2px !important;
+  left: 78px !important;
+}
+
+.program-card .flower-top-right {
+  top: 105px !important;
+  right: 36px !important;
+}
+
+.program-card .flower-bottom-left {
+  bottom: 88px !important;
+  left: 28px !important;
+}
+
+.program-card .flower-bottom-right {
+  bottom: 36px !important;
+  right: 32px !important;
+}
+
+@media (max-width: 430px) {
+  .program-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+    padding: 24px 18px !important;
+  }
+
+  .program-arch {
+    min-height: 500px !important;
+    padding: 64px 16px 30px !important;
+  }
+
+  .program-title {
+    font-size: 21px !important;
+    letter-spacing: 2.5px !important;
+  }
+
+  .program-timeline {
+    max-width: 285px;
+    gap: 18px;
+  }
+
+  .program-box {
+    padding: 17px 14px;
+  }
+
+  .program-box h3 {
+    font-size: 15px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .program-box p {
+    font-size: 15px !important;
+    letter-spacing: 3px !important;
+  }
+}
+/* KAD 5 - DOA */
+.prayer-card {
+  position: relative;
+  width: min(92vw, 430px) !important;
+  min-height: 620px !important;
+  margin: 16px auto !important;
+  padding: 30px 24px !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(circle at top left, rgba(232, 205, 200, 0.55), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(232, 205, 200, 0.45), transparent 30%),
+    linear-gradient(115deg, transparent 0 12%, rgba(110, 140, 155, 0.18) 12.2%, transparent 12.8%),
+    linear-gradient(65deg, transparent 0 82%, rgba(110, 140, 155, 0.18) 82.2%, transparent 82.8%),
+    #fffdfb !important;
+  box-shadow: 0 14px 32px rgba(40, 35, 35, 0.24) !important;
+  overflow: hidden !important;
+}
+
+.prayer-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(185, 110, 70, 0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.prayer-arch {
+  position: relative !important;
+  z-index: 3 !important;
+  min-height: 535px !important;
+  margin: 20px auto 0 !important;
+  padding: 54px 22px 34px !important;
+  border: 2px solid rgba(185, 110, 70, 0.78) !important;
+  border-top-left-radius: 190px !important;
+  border-top-right-radius: 190px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.50) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.prayer-title {
+  margin: 0 0 18px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+  color: #1f1715 !important;
+}
+
+.prayer-bismillah {
+  margin: 0 0 24px !important;
+  font-size: 31px !important;
+  color: #10804c !important;
+  line-height: 1.1 !important;
+  font-family: "Cormorant Garamond", serif !important;
+}
+
+.prayer-text {
+  max-width: 310px !important;
+  margin: 0 auto 24px !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  line-height: 1.28 !important;
+  color: #1f1715 !important;
+}
+
+.prayer-ending {
+  margin: 0 auto !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  color: #1f1715 !important;
+}
+
+.divider-line {
+  width: 150px;
+  height: 16px;
+  margin: 0 auto 18px;
+  position: relative;
+}
+
+.divider-line::before,
+.divider-line::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  width: 62px;
+  height: 1px;
+  background: rgba(80, 80, 80, 0.45);
+}
+
+.divider-line::before {
+  left: 0;
+}
+
+.divider-line::after {
+  right: 0;
+}
+
+.divider-line span {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  background: rgba(80, 80, 80, 0.55);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.divider-line.bottom {
+  margin-top: 26px;
+  margin-bottom: 0;
+}
+
+/* bunga kecil untuk kad doa */
+.prayer-card .flower {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 18px !important;
+  opacity: 0.78 !important;
+}
+
+.prayer-card .flower-top-left {
+  top: -2px !important;
+  left: 78px !important;
+}
+
+.prayer-card .flower-top-right {
+  top: 105px !important;
+  right: 36px !important;
+}
+
+.prayer-card .flower-bottom-left {
+  bottom: 88px !important;
+  left: 28px !important;
+}
+
+.prayer-card .flower-bottom-right {
+  bottom: 36px !important;
+  right: 32px !important;
+}
+
+@media (max-width: 430px) {
+  .prayer-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+    padding: 24px 18px !important;
+  }
+
+  .prayer-arch {
+    min-height: 500px !important;
+    padding: 48px 16px 30px !important;
+  }
+
+  .prayer-title {
+    font-size: 23px !important;
+  }
+
+  .prayer-bismillah {
+    font-size: 27px !important;
+  }
+
+  .prayer-text {
+    font-size: 15.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  .prayer-ending {
+    font-size: 16px !important;
+  }
+}
+/* RSVP BOTTOM MENU BUTTON */
+.menu-rsvp-btn {
+  border: none;
+  background: transparent;
+  color: #8b5e4b;
+  text-decoration: none;
+  font-size: 11.5px;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-rsvp-btn span {
+  font-size: 18px;
+}
+
+/* RSVP POPUP */
+.rsvp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.62);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.rsvp-overlay.show {
+  display: flex;
+}
+
+.rsvp-popup {
+  position: relative;
+  width: min(92vw, 420px);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 42px 28px 34px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  animation: rsvpPop 0.35s ease;
+}
+
+.rsvp-close {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 7px;
+  background: #ff4b43;
+  color: white;
+  font-size: 24px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.rsvp-title {
+  margin: 0 0 22px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #3f2a25;
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 18px;
+}
+
+.rsvp-form input {
+  width: 100%;
+  padding: 15px 16px;
+  border: none;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.25);
+  background: #fafafa;
+  text-align: center;
+  font-family: inherit;
+  font-size: 15px;
+  color: #333;
+  outline: none;
+}
+
+.rsvp-form input:focus {
+  border-bottom-color: #8b5e4b;
+}
+
+.attendance-title {
+  margin: 4px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f1715;
+}
+
+.attendance-toggle {
+  width: 150px;
+  height: 68px;
+  margin: 0 auto 8px;
+  padding: 10px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 16px 35px rgba(70, 45, 40, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.attendance-option {
+  width: 54px;
+  height: 38px;
+  border: none;
+  border-radius: 999px;
+  background: #eef7fb;
+  color: #8b5e4b;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.attendance-option.active {
+  background: #47d68c;
+  color: white;
+}
+
+.rsvp-submit {
+  margin-top: 8px;
+  width: 82%;
+  justify-self: center;
+  padding: 16px;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #4d64c8, #7437e8);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes rsvpPop {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* CONTACT BOTTOM MENU BUTTON */
+.menu-contact-btn {
+  border: none;
+  background: transparent;
+  color: #8b5e4b;
+  text-decoration: none;
+  font-size: 11.5px;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-contact-btn span {
+  font-size: 18px;
+}
+
+/* CONTACT POPUP */
+.contact-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.62);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.contact-overlay.show {
+  display: flex;
+}
+
+.contact-popup {
+  position: relative;
+  width: min(92vw, 420px);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 58px 28px 34px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  animation: contactPop 0.35s ease;
+}
+
+.contact-close {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 7px;
+  background: #ff4b43;
+  color: white;
+  font-size: 24px;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.contact-list {
+  display: grid;
+  gap: 18px;
+}
+
+.contact-card {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 5px 18px rgba(60, 45, 40, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.contact-info h3 {
+  margin: 0 0 4px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #4a4a4a;
+}
+
+.contact-info p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.contact-actions a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #222;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.contact-actions a:hover {
+  background: #e7ddd8;
+  transform: scale(1.05);
+}
+
+@keyframes contactPop {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.contact-actions a {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #f2f2f2 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+
+.contact-actions svg {
+  width: 19px;
+  height: 19px;
+}
+
+.whatsapp-icon svg {
+  fill: #25D366;
+}
+
+.call-icon svg {
+  fill: #222;
+}
+
+.contact-actions a:hover {
+  transform: scale(1.08);
+  background: #eeeeee !important;
+}
+/* FIX CONTACT POPUP SUPAYA MENEGAK */
+.contact-popup {
+  overflow-x: hidden !important;
+}
+
+.contact-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+  width: 100% !important;
+}
+
+.contact-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.contact-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+.contact-actions {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+
+.contact-actions a {
+  flex-shrink: 0 !important;
+}
+.contact-overlay,
+.contact-popup,
+.contact-list,
+.contact-card {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+/* RESET CONTACT POPUP - STRAIGHT MENEGAK */
+.contact-popup {
+  width: min(92vw, 420px) !important;
+  max-height: 88vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 58px 28px 34px !important;
+  box-sizing: border-box !important;
+}
+
+.contact-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.contact-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+
+  padding: 14px 14px !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  box-shadow: 0 5px 18px rgba(60, 45, 40, 0.12) !important;
+}
+
+.contact-info {
+  text-align: left !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.contact-info h3 {
+  margin: 0 0 4px !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #4a4a4a !important;
+}
+
+.contact-info p {
+  margin: 0 !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  white-space: nowrap !important;
+}
+
+.contact-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+.contact-actions a {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  border-radius: 50% !important;
+  background: #f2f2f2 !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.contact-actions svg {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+}
+
+.whatsapp-icon svg {
+  fill: #25D366 !important;
+}
+
+.call-icon svg {
+  fill: #222 !important;
+}
+.contact-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 16px !important;
+}
+
+.contact-card {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.contact-actions {
+  display: flex !important;
+  gap: 10px !important;
+}
+
+.contact-actions a {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  border-radius: 50% !important;
+  background: #f2f2f2 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.contact-actions svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.whatsapp-icon svg {
+  fill: #25D366 !important;
+}
+
+.call-icon svg {
+  fill: #222 !important;
+}
+/* FOOTER BRANDING FIX */
+.footer-brand {
+  width: min(92vw, 430px) !important;
+  margin: 24px auto 110px !important;
+  padding: 24px 18px !important;
+  text-align: center !important;
+}
+
+.footer-brand a {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 220px !important;
+  max-width: 300px !important;
+  padding: 13px 22px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+/* GUNA DESIGN FRAME GAMBAR SENDIRI */
+.wedding-cover-card {
+  background: url("images/floral-frame.png") center / cover no-repeat !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+}
+
+/* Buang border luar lama */
+.wedding-cover-card::before,
+.wedding-cover-card::after {
+  display: none !important;
+}
+
+/* Buang semua bunga CSS lama */
+.wedding-cover-card .flower,
+.wedding-cover-card .big-flower,
+.wedding-cover-card .petal,
+.wedding-cover-card .floral-branch,
+.wedding-cover-card .branch-img,
+.wedding-cover-card .floral-frame-img {
+  display: none !important;
+}
+
+/* Buang arch border lama */
+.wedding-cover-card .arch-frame {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+/* SUSUN TEKS UNTUK FRAME BARU */
+.wedding-cover-card .arch-frame {
+  min-height: 620px !important;
+  margin: 0 !important;
+  padding: 120px 35px 70px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.cover-title {
+  margin: 0 0 55px !important;
+  font-size: 24px !important;
+  letter-spacing: 6px !important;
+  color: #8c514f !important;
+}
+
+.cover-name {
+  font-family: "Great Vibes", cursive !important;
+  font-size: 78px !important;
+  line-height: 0.95 !important;
+  color: #8c514f !important;
+}
+
+.cover-name span {
+  margin: 18px 0 !important;
+  font-size: 34px !important;
+  color: #8c514f !important;
+}
+
+.cover-date {
+  margin: 50px 0 4px !important;
+  font-size: 16px !important;
+  letter-spacing: 7px !important;
+  color: #8c514f !important;
+}
+
+.cover-place {
+  margin: 10px 0 42px !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 34px !important;
+  letter-spacing: 1px !important;
+  text-transform: none !important;
+  color: #8c514f !important;
+}
+
+.cover-quote {
+  max-width: 320px !important;
+  font-size: 17px !important;
+  letter-spacing: 5px !important;
+  line-height: 1.5 !important;
+  color: #8c514f !important;
+}
+@media (max-width: 430px) {
+  .wedding-cover-card {
+    width: 94vw !important;
+    min-height: 570px !important;
+  }
+
+  .wedding-cover-card .arch-frame {
+    min-height: 570px !important;
+    padding: 90px 28px 55px !important;
+  }
+
+  .cover-title {
+    font-size: 16px !important;
+    letter-spacing: 4px !important;
+    margin-bottom: 42px !important;
+  }
+
+  .cover-name {
+    font-size: 58px !important;
+  }
+
+  .cover-name span {
+    font-size: 28px !important;
+    margin: 12px 0 !important;
+  }
+
+  .cover-date {
+    margin-top: 38px !important;
+    font-size: 13px !important;
+    letter-spacing: 5px !important;
+  }
+
+  .cover-place {
+    font-size: 26px !important;
+    margin-bottom: 32px !important;
+  }
+
+  .cover-quote {
+    font-size: 12px !important;
+    letter-spacing: 3px !important;
+  }
+}
+/* SAIZ KAD MACAM GAMBAR 2 - LEBIH TINGGI */
+.wedding-cover-card {
+  width: min(92vw, 430px) !important;
+  aspect-ratio: 430 / 760 !important;
+  min-height: auto !important;
+  background: url("images/floral-frame.png") center / cover no-repeat !important;
+  background-color: white !important;
+  border-radius: 18px !important;
+}
+.wedding-cover-card {
+  background: url("images/floral-frame.png") center / contain no-repeat !important;
+  background-color: white !important;
+}
+.wedding-cover-card {
+  width: min(92vw, 430px) !important;
+  aspect-ratio: 9 / 16 !important;
+  min-height: auto !important;
+  background: url("images/floral-frame.png") center / cover no-repeat !important;
+  background-color: white !important;
+  border-radius: 18px !important;
+}
+/* FIX TEKS KAD PERTAMA SUPAYA MUAT */
+.cover-title {
+  font-size: 17px !important;
+  letter-spacing: 5px !important;
+  margin-bottom: 38px !important;
+}
+
+.cover-name {
+  font-size: 58px !important;
+  line-height: 0.9 !important;
+}
+
+.cover-name span {
+  font-size: 28px !important;
+  margin: 10px 0 !important;
+}
+
+.cover-date {
+  font-size: 12px !important;
+  letter-spacing: 6px !important;
+  margin-top: 38px !important;
+  margin-bottom: 12px !important;
+}
+
+.cover-place {
+  font-size: 28px !important;
+  margin-bottom: 36px !important;
+}
+
+.cover-quote {
+  max-width: 300px !important;
+  font-size: 13px !important;
+  letter-spacing: 4px !important;
+  line-height: 1.6 !important;
+}
+.wedding-cover-card .arch-frame {
+  transform: translateY(20px) !important;
+}
+/* SEMUA KAD GUNA FRAME CANVA YANG SAMA */
+.wedding-cover-card,
+.invitation-card,
+.event-card,
+.program-card,
+.prayer-card {
+  width: min(92vw, 430px) !important;
+  aspect-ratio: 9 / 16 !important;
+  min-height: auto !important;
+  margin: 18px auto !important;
+  padding: 0 !important;
+  border-radius: 18px !important;
+  background: url("images/floral-frame.png") center / cover no-repeat !important;
+  background-color: white !important;
+  box-shadow: 0 16px 35px rgba(60, 40, 35, 0.18) !important;
+  overflow: hidden !important;
+}
+
+/* BUANG BORDER / BUNGA CSS LAMA */
+.wedding-cover-card::before,
+.wedding-cover-card::after,
+.invitation-card::before,
+.invitation-card::after,
+.event-card::before,
+.event-card::after,
+.program-card::before,
+.program-card::after,
+.prayer-card::before,
+.prayer-card::after {
+  display: none !important;
+}
+
+.flower,
+.big-flower,
+.petal,
+.floral-branch,
+.branch-img,
+.floral-frame-img {
+  display: none !important;
+}
+
+/* BUANG ARCH BORDER LAMA SEBAB BORDER DAH ADA DALAM GAMBAR */
+.arch-frame,
+.event-arch,
+.program-arch,
+.prayer-arch {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 105px 38px 70px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+/* TEKS SUPAYA MUAT DALAM FRAME */
+.cover-title,
+.program-title,
+.prayer-title,
+.event-day,
+.invite-small {
+  font-size: 16px !important;
+  letter-spacing: 4px !important;
+  color: #8c514f !important;
+}
+
+.cover-name {
+  font-size: 54px !important;
+  line-height: 0.9 !important;
+  color: #8c514f !important;
+}
+
+.cover-name span {
+  font-size: 26px !important;
+  margin: 10px 0 !important;
+  color: #8c514f !important;
+}
+
+.cover-date {
+  font-size: 12px !important;
+  letter-spacing: 5px !important;
+  margin-top: 34px !important;
+  color: #8c514f !important;
+}
+
+.cover-place {
+  font-size: 25px !important;
+  margin-bottom: 30px !important;
+  color: #8c514f !important;
+}
+
+.cover-quote {
+  max-width: 280px !important;
+  font-size: 11px !important;
+  letter-spacing: 3px !important;
+  line-height: 1.6 !important;
+  color: #8c514f !important;
+}
+
+/* KAD 2 JEMPUTAN */
+.bismillah,
+.prayer-bismillah {
+  font-size: 25px !important;
+  margin-bottom: 18px !important;
+}
+
+.parent-name {
+  font-size: 15px !important;
+}
+
+.invite-text {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  max-width: 280px !important;
+}
+
+.script-name {
+  font-size: 28px !important;
+}
+
+/* KAD 3 EVENT */
+.event-date-text {
+  font-size: 24px !important;
+}
+
+.event-countdown {
+  transform: scale(0.9) !important;
+  margin: 18px auto 24px !important;
+}
+
+.event-time-box {
+  transform: scale(0.9) !important;
+  margin-bottom: 18px !important;
+}
+
+.event-location {
+  font-size: 16px !important;
+}
+
+/* KAD 4 ATURCARA */
+.program-title {
+  margin-bottom: 24px !important;
+}
+
+.program-timeline {
+  transform: scale(0.92) !important;
+}
+
+/* KAD 5 DOA */
+.prayer-text {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  max-width: 285px !important;
+}
+
+.prayer-ending {
+  font-size: 15px !important;
+}
+@media (max-width: 430px) {
+  .wedding-cover-card,
+  .invitation-card,
+  .event-card,
+  .program-card,
+  .prayer-card {
+    width: 92vw !important;
+    aspect-ratio: 9 / 16 !important;
+  }
+
+  .arch-frame,
+  .event-arch,
+  .program-arch,
+  .prayer-arch {
+    padding: 88px 30px 58px !important;
+  }
+
+  .cover-name {
+    font-size: 48px !important;
+  }
+
+  .cover-place {
+    font-size: 22px !important;
+  }
+
+  .cover-quote {
+    font-size: 10px !important;
+  }
+}
+/* FIX KAD 2 - JEMPUTAN RASMI SUPAYA MUAT */
+.invitation-card .arch-frame {
+  padding: 95px 34px 55px !important;
+  justify-content: center !important;
+  transform: translateY(0) !important;
+}
+
+.invitation-card .bismillah {
+  font-size: 22px !important;
+  margin: 0 0 14px !important;
+  line-height: 1.1 !important;
+}
+
+.invitation-card .invite-small {
+  font-size: 14px !important;
+  letter-spacing: 1px !important;
+  margin: 0 0 14px !important;
+}
+
+.invitation-card .parent-name {
+  font-size: 14px !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.1 !important;
+  margin: 3px 0 !important;
+}
+
+.invitation-card .and-text {
+  font-size: 14px !important;
+  margin: 2px 0 !important;
+}
+
+.invitation-card .invite-text {
+  max-width: 265px !important;
+  font-size: 13px !important;
+  line-height: 1.15 !important;
+  margin: 16px auto 12px !important;
+}
+
+.invitation-card .script-name {
+  font-size: 26px !important;
+  line-height: 0.95 !important;
+  margin: 3px 0 !important;
+}
+/* FIX KAD 2 - BUANG BORDER & BESARKAN HURUF */
+.invitation-card .arch-frame {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 105px 42px 70px !important;
+  transform: translateY(0) !important;
+}
+
+/* Besarkan semua tulisan kad 2 */
+.invitation-card .bismillah {
+  font-size: 28px !important;
+  margin-bottom: 18px !important;
+}
+
+.invitation-card .invite-small {
+  font-size: 17px !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 20px !important;
+}
+
+.invitation-card .parent-name {
+  font-size: 17px !important;
+  letter-spacing: 1px !important;
+  line-height: 1.2 !important;
+  margin: 5px 0 !important;
+}
+
+.invitation-card .and-text {
+  font-size: 17px !important;
+  margin: 4px 0 !important;
+}
+
+.invitation-card .invite-text {
+  max-width: 310px !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+  margin: 24px auto 18px !important;
+}
+
+.invitation-card .script-name {
+  font-size: 34px !important;
+  line-height: 1 !important;
+  margin: 5px 0 !important;
+}
+.invitation-card .arch-frame {
+  transform: translateY(25px) !important;
+}
+.invitation-card .arch-frame {
+  transform: translateY(40px) !important;
+}
+/* BESARKAN HURUF KAD DOA */
+.prayer-card .prayer-title {
+  font-size: 22px !important;
+  letter-spacing: 4px !important;
+}
+
+.prayer-card .prayer-bismillah {
+  font-size: 34px !important;
+  margin-bottom: 24px !important;
+}
+
+.prayer-card .prayer-text {
+  font-size: 17px !important;
+  line-height: 1.45 !important;
+  max-width: 330px !important;
+}
+
+.prayer-card .prayer-ending {
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+}
+
+.prayer-card .divider-line {
+  width: 180px !important;
+}
+.prayer-card .prayer-text {
+  font-size: 19px !important;
+}
+
+.prayer-card .prayer-ending {
+  font-size: 20px !important;
+}
+/* KECILKAN KAD 3 UNTUK PHONE */
+@media (max-width: 430px) {
+  .event-card .event-arch {
+    padding-top: 70px !important;
+    padding-bottom: 50px !important;
+    transform: translateY(-10px) !important;
+  }
+
+  .event-icon {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 20px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .event-day {
+    font-size: 13px !important;
+    letter-spacing: 4px !important;
+  }
+
+  .event-date-text {
+    font-size: 20px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .event-countdown {
+    transform: scale(0.78) !important;
+    margin: 0 auto 18px !important;
+  }
+
+  .event-countdown strong {
+    font-size: 18px !important;
+  }
+
+  .event-countdown span {
+    font-size: 9px !important;
+    letter-spacing: 2px !important;
+  }
+
+  .event-time-box {
+    transform: scale(0.82) !important;
+    margin-bottom: 16px !important;
+  }
+
+  .event-time-box p {
+    font-size: 14px !important;
+  }
+
+  .location-icon {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .event-location {
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+    max-width: 220px !important;
+  }
+}
+@media (max-width: 430px) {
+  .event-countdown {
+    transform: scale(0.7) !important;
+  }
+}
+/* FIX KAD 2 NAMA PENGANTIN DI PHONE */
+@media (max-width: 430px) {
+  .invitation-card .script-name {
+    font-size: 26px !important;
+    line-height: 1.05 !important;
+    max-width: 260px !important;
+    margin: 4px auto !important;
+    white-space: normal !important;
+  }
+
+  .invitation-card .and-text {
+    font-size: 15px !important;
+    margin: 2px 0 !important;
+  }
+
+  .invitation-card .invite-text {
+    font-size: 13px !important;
+    line-height: 1.15 !important;
+    max-width: 260px !important;
+    margin: 16px auto 10px !important;
+  }
+
+  .invitation-card .parent-name {
+    font-size: 15px !important;
+  }
+
+  .invitation-card .bismillah {
+    font-size: 25px !important;
+  }
+}
+@media (max-width: 430px) {
+  .invitation-card .script-name {
+    font-size: 22px !important;
+  }
+}
+@media (max-width: 430px) {
+  .invitation-card .script-name {
+    max-width: 230px !important;
+  }
+}
+/* NAIKKAN AYAT QUOTE KAD PERTAMA */
+.cover-quote {
+  transform: translateY(-25px) !important;
+}
+@media (max-width: 430px) {
+  .prayer-card .prayer-title {
+    font-size: 15px !important;
+  }
+
+  .prayer-card .prayer-bismillah {
+    font-size: 22px !important;
+  }
+
+  .prayer-card .prayer-text {
+    font-size: 12.5px !important;
+    line-height: 1.35 !important;
+    max-width: 260px !important;
+  }
+
+  .prayer-card .prayer-ending {
+    font-size: 12.5px !important;
+  }
+}
+/* KECILKAN KAD DOA */
+.prayer-card .prayer-title {
+  font-size: 17px !important;
+  letter-spacing: 3px !important;
+  margin-bottom: 14px !important;
+}
+
+.prayer-card .prayer-bismillah {
+  font-size: 25px !important;
+  margin-bottom: 18px !important;
+}
+
+.prayer-card .prayer-text {
+  font-size: 14px !important;
+  line-height: 1.45 !important;
+  max-width: 285px !important;
+  margin-bottom: 22px !important;
+}
+
+.prayer-card .prayer-ending {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.prayer-card .divider-line {
+  width: 135px !important;
+}
